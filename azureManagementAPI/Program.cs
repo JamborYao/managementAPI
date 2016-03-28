@@ -23,8 +23,7 @@ namespace azureManagementAPI
         [STAThread]
         static void Main(string[] args)
         {
-            var token = GetAuthorizationHeader();
-            var credential = new TokenCloudCredentials(ConfigurationManager.AppSettings["subscriptionId"], token);
+        
 
             SubscriptionCloudCredentials cre = new CertificateCloudCredentials(
                 "8692422d-d6df-4b0a-a1b0-f296e4a43841",
@@ -33,6 +32,10 @@ namespace azureManagementAPI
             var subscriptionClient = new SubscriptionClient(cre, new Uri("https://management.core.chinacloudapi.cn/"));
             subscriptionClient.Subscriptions.List();
 
+
+
+            var token = GetAuthorizationHeader();
+            var credential = new TokenCloudCredentials(ConfigurationManager.AppSettings["subscriptionId"], token);
             var computeClient = new ComputeManagementClient(cre, new Uri("https://management.core.chinacloudapi.cn/")); //, new Uri("https://management.core.chinacloudapi.cn/")
 
 
